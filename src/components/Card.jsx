@@ -9,9 +9,8 @@ export default function Card(props) {
         setNumero(numero+1)
     }
     const del=()=>{
-      const id = toString(props.numero)
-      props.mequieromori(id)
-      
+      const id = props.id
+      props.delBtn(id)
     }
 
   return <div className='card'>

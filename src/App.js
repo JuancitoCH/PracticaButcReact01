@@ -1,33 +1,29 @@
 import React, { useState } from 'react'
 import Card from './components/Card'
+import uniqid from 'uniqid'
 
 const App = ()=>{
   
   const [tarjetas,setTarjetas] = useState([])
   
   const agregarTarjeta = () =>{
-    tarjetas.push(<Card key={tarjetas.length} titulo={`La tarjeta numero ${tarjetas.length}`} numero={tarjetas.length} mequieromori={EliminarUna}/>)
+    const id = uniqid()
+    tarjetas.push(<Card key={id} id={id} titulo={`La tarjeta numero ${tarjetas.length}`} numero={tarjetas.length} delBtn={EliminarUna}/>)
     setTarjetas([...tarjetas])
   }
   const eliminarTarjetaUltima=()=>{
-    const array = tarjetas.filter(function(el){
-      return el.key !== ((tarjetas.length - 1 +''))
-    })
-    setTarjetas(array)
+    tarjetas.pop();
+    setTarjetas([...tarjetas])
   }
 
   const EliminarUna=(id)=>{
-    console.log(tarjetas)
+    
     const array = tarjetas.filter(function(el){
-      console.log('key ' +el.key)
-      console.log('id '+id)
-
-      return el.key !== id
+      return el.props.id !== id
     })
-    console.log(array)
-    setTarjetas(array)
+    setTarjetas([...array])
   }
- 
+
   return(
     <div>
       <h2>Prueba de css</h2>
